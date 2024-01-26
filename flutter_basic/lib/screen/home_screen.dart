@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_basic/screen/widget/home/column_widget.dart';
+import 'package:flutter_basic/screen/widget/home/rich_text_widget.dart';
 import 'package:flutter_basic/screen/widget/home/row_widget.dart';
+import 'package:flutter_basic/screen/widget/home/text_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -40,7 +42,9 @@ class HomeScreen extends StatelessWidget {
         
       ),     
       //body: const ColumnWidget(),
-      body: const RowWidget(),
+      // body: const RowWidget(),
+      // body: const TextWidget(),
+      body: const RichTextWidget(),
     );
   }
 }
