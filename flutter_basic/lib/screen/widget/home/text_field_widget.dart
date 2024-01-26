@@ -9,6 +9,34 @@ class TextFieldWidget extends  StatefulWidget {
 }
 
 class _TextFieldWidgetState extends State<TextFieldWidget> {
+
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
+  late TextEditingController _bioController;
+  String email = '';
+
+
+  @override
+  void initState() {
+    super.initState();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+    _bioController = TextEditingController();
+    _emailController.addListener(_emailListener);
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _bioController.dispose();
+    _emailController.removeListener(_emailListener);
+    super.dispose();
+  }
+
+  void _emailListener() {
+    print(_emailController.text);
+  }
   
 
   @override
@@ -17,8 +45,9 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          
+          Text(email),
           TextField(
+            controller: _emailController,
             keyboardType: TextInputType.emailAddress,
             readOnly: false,
             textCapitalization: TextCapitalization.words,
@@ -36,13 +65,20 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                 borderRadius: BorderRadius.circular(8),
                 borderSide: const BorderSide(color: Colors.blue)
               )
-            )
+            ),
+            onChanged: (value) {
+              setState(() {
+                email = value;
+              });
+            },
+            
             
           ),
 
           const SizedBox(height: 20),
 
           TextField(
+            controller: _passwordController,
             keyboardType: TextInputType.text,
             readOnly: false,            
             obscureText: true,
@@ -72,6 +108,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           const SizedBox(height: 20),
 
           TextField(
+            controller: _bioController,
             keyboardType: TextInputType.text,
             readOnly: false,
             textCapitalization: TextCapitalization.words,
