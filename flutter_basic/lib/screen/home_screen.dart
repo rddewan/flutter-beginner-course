@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_basic/screen/widget/home/button_widget.dart';
 import 'package:flutter_basic/screen/widget/home/column_widget.dart';
 import 'package:flutter_basic/screen/widget/home/container_widget.dart';
 import 'package:flutter_basic/screen/widget/home/image_widget.dart';
@@ -50,7 +51,8 @@ class HomeScreen extends StatelessWidget {
       // body: const RichTextWidget(),
       // body: const TextFieldWidget(),
       // body: const ContinerWidget(),
-      body:  const ImageWidget(),
+      // body:  const ImageWidget(),
+      body: const ButtonWidget(),
     );
   }
 }
