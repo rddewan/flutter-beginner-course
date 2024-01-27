@@ -17,3 +17,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  # set your asstes - images - fonts 
+  assets:
+    - assets/images/stone.jpeg
+
+

@@ -24,7 +24,7 @@ class ContinerWidget extends StatelessWidget {
         ),
         child: const Padding(
           padding: EdgeInsets.only(left: 16.0),
-          child:  Text('Container'),
+          child:  Center(child: Text('Container')),
         ),
       ),
     );
