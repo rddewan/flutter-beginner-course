@@ -18,7 +18,7 @@ class ContinerWidget extends StatelessWidget {
               color: Colors.teal.shade100,
               spreadRadius: 5,
               blurRadius: 8,
-              offset: Offset(10, 10),
+              offset: const Offset(10, 10),
             )
           ]
         ),
