@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_basic/screen/widget/home/container_widget.dart';
+import 'package:flutter_basic/screen/widget/home/list_tile_widget.dart';
 
 class ListViewBuilderWidget extends StatefulWidget {
   const ListViewBuilderWidget({super.key});
@@ -46,7 +47,7 @@ class _ListViewBuilderWidgetState extends State<ListViewBuilderWidget> {
       controller: _scrollController,
       reverse: false,
       itemBuilder: (context, index) {
-        return  ContinerWidget(text: 'Container $index',);
+        return ListTileWidget(text: '${index + 1}');
       },
     );
   }
