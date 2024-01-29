@@ -33,7 +33,10 @@ class _ListTileWidgetState extends State<ListTileWidget> {
         selected: selected,
         selectedColor: Colors.blue,
         selectedTileColor: Colors.amber.shade100,
-        contentPadding: const EdgeInsets.all(8.0),      
+        contentPadding: const EdgeInsets.all(8.0),  
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8)
+        ),    
         onTap: () {
           debugPrint(widget.text);
           _isSelected(widget.text);

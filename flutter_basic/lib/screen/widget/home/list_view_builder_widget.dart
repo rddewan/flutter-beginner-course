@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_basic/screen/widget/home/card_widget.dart';
 import 'package:flutter_basic/screen/widget/home/container_widget.dart';
 import 'package:flutter_basic/screen/widget/home/list_tile_widget.dart';
 
@@ -47,7 +48,7 @@ class _ListViewBuilderWidgetState extends State<ListViewBuilderWidget> {
       controller: _scrollController,
       reverse: false,
       itemBuilder: (context, index) {
-        return ListTileWidget(text: '${index + 1}');
+        return CardWidget(text: index.toString());
       },
     );
   }
