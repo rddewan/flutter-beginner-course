@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ContinerWidget extends StatelessWidget {
-  const ContinerWidget({super.key});
+  final String text;
+
+  const ContinerWidget({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +24,9 @@ class ContinerWidget extends StatelessWidget {
             )
           ]
         ),
-        child: const Padding(
-          padding: EdgeInsets.only(left: 16.0),
-          child:  Center(child: Text('Container')),
+        child:  Padding(
+          padding: const EdgeInsets.only(left: 16.0),
+          child:  Center(child: Text(text)),
         ),
       ),
     );
