@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_basic/screen/home_screen.dart';
+import 'package:flutter_basic/screen/widget/home/checkbox_widget.dart';
 import 'package:flutter_basic/screen/widget/home/grid_view_widget.dart';
 import 'package:flutter_basic/screen/widget/home/stack_widget.dart';
 
@@ -12,10 +13,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return const MaterialApp(
       // home: HomeScreen()
       // home: GridViewWidget()
-      home: StackWidget()
+      // home: StackWidget()
+      home: CheckboxWidget(),
     );
   }
 }
