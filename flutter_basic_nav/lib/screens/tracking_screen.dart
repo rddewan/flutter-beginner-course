@@ -28,6 +28,13 @@ class _TrackingScreenState extends State<TrackingScreen> {
             }, 
             child: const Text('GoBack'),
           ),
+
+          ElevatedButton(
+            onPressed: () {
+              Navigator.popUntil(context, ModalRoute.withName('/'));
+            }, 
+            child: const Text('Go To Home'),
+          ),
         ],
       ),
     );
