@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_basic_nav/route/main_route.dart';
 import 'package:flutter_basic_nav/screens/home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -15,10 +16,15 @@ class LoginScreen extends StatelessWidget {
           const Text('Login Screen'),
           ElevatedButton(
             onPressed: () {
-              Navigator.push(
+              // Push a named route onto the navigator that most tightly encloses the given context.
+              //Navigator.pushNamed(context, homeRoute);
+              Navigator.pushNamedAndRemoveUntil(
                 context, 
-                MaterialPageRoute(builder: (_) => const HomeScreen()),
+                homeRoute, 
+                // (route) => route.settings.name == rootRoute,
+                (route) => false,
               );
+             
             }, 
             child: const Text('Login'),
           ),

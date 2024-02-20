@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_basic_nav/route/main_route.dart';
 import 'package:flutter_basic_nav/screens/detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -29,11 +30,22 @@ class _HomeScreenState extends State<HomeScreen> {
           const Text('Home Screen'),
           ElevatedButton(
             onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                    builder: (context) =>
-                         DetailScreen(name: 'John', age: 30, updateName: updateName)),
+              final Map<String, dynamic> arguments = {
+                'name': 'John', 
+                'age': 30, 
+                'updateName': updateName,
+              };
+              
+              Navigator.pushNamed(
+                context, 
+                detailRoute, 
+                arguments: arguments,
               );
+              // Navigator.of(context).push(
+              //   MaterialPageRoute(
+              //       builder: (context) =>
+              //            DetailScreen(name: 'John', age: 30, updateName: updateName)),
+              // );
             },
             child: const Text('Go To Detail'),
           ),

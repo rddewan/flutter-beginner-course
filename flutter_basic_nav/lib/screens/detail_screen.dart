@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_basic_nav/route/main_route.dart';
 import 'package:flutter_basic_nav/screens/tracking_screen.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -35,12 +36,16 @@ class DetailScreen extends StatelessWidget {
 
           ElevatedButton(
             onPressed: () {
-              Navigator.push(
+              Navigator.pushNamed(
                 context, 
-                MaterialPageRoute(
-                  builder: (context) => const TrackingScreen(name: 'John'),
-                ),
-               ); //Navigator.pushReplacement(context, route)
+                trackingRoute, 
+              );
+              // Navigator.push(
+              //   context, 
+              //   MaterialPageRoute(
+              //     builder: (context) => const TrackingScreen(name: 'John'),
+              //   ),
+              //  ); //Navigator.pushReplacement(context, route)
 
             }, 
             child: const Text('Go To Tracking Page'),
