@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_basic_nav/screens/detail_screen.dart';
-import 'package:flutter_basic_nav/screens/log_in_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -53,6 +52,39 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
 
           Text(name),
+
+          ElevatedButton(
+            onPressed: () async {
+              showDialog(
+                context: context, 
+                barrierDismissible: false,
+                builder: (context) {
+                  return PopScope(
+                    canPop: false,
+                    child: AlertDialog(
+                      title: const Text('Alert'),
+                      content: const Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(' I am a alert dialog')
+                        ],
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          }, 
+                          child: const Text('OK')
+                        )
+                      ],
+                    ),
+                  );
+                  
+                },
+              );
+            },
+            child: const Text('Open a Dilaog'),
+          ),
            
         ],
       ),
