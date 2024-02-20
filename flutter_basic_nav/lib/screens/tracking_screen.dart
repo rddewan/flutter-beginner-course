@@ -31,7 +31,8 @@ class _TrackingScreenState extends State<TrackingScreen> {
 
           ElevatedButton(
             onPressed: () {
-              Navigator.popUntil(context, ModalRoute.withName('/'));
+              //Navigator.popUntil(context, ModalRoute.withName('/'));
+              Navigator.popUntil(context, (route) => route.isFirst);
             }, 
             child: const Text('Go To Home'),
           ),
