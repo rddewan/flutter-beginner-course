@@ -13,6 +13,7 @@ class TabScreen extends StatefulWidget {
 
 class _TabScreenState extends State<TabScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController; 
+  int badge = 1;
 
   @override
   void initState() {    
@@ -31,6 +32,12 @@ class _TabScreenState extends State<TabScreen> with SingleTickerProviderStateMix
     const TabTwo(),
   ];
 
+  void updateBadge() {
+    setState(() {
+      badge += 1;
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +48,25 @@ class _TabScreenState extends State<TabScreen> with SingleTickerProviderStateMix
         title: const Text('Tab Screen'),
         bottom: TabBar(
           controller: _tabController,
-          tabs: const [
-            Tab(
+          tabs: [
+            const Tab(
               text: 'Tab One',
               icon: Icon(Icons.home),
             ),
             Tab(
-              text: 'Tab Two',
-              icon: Icon(Icons.settings),
+              text: 'Shopping',
+              icon: Badge(
+                label: Text(badge.toString()),
+                alignment: Alignment.topCenter,
+                backgroundColor: Colors.amber,
+                isLabelVisible: true,
+                child: IconButton(
+                  onPressed: () {
+                    updateBadge();
+                  },
+                  icon: const Icon(Icons.shopping_cart)
+                  ),
+              )
             ),
 
           ],
