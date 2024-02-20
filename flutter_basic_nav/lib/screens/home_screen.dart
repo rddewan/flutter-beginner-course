@@ -17,7 +17,10 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {         
             
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const DetailScreen()),
+                MaterialPageRoute(builder: (context) => const DetailScreen(
+                  name: 'John',
+                  age: 30
+                )),
               );
             }, 
             child: const Text('Go To Detail'),
@@ -27,7 +30,10 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {
              Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const DetailScreen()),
+              MaterialPageRoute(builder: (context) => const DetailScreen(
+                name: 'John',
+                age: 30
+              )),
             );
             }, 
             child: const Text('Go To Detail'),
