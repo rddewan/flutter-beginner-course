@@ -4,8 +4,14 @@ import 'package:flutter_basic_nav/screens/tracking_screen.dart';
 class DetailScreen extends StatelessWidget {
   final String name;
   final int age;
+  final Function(String) updateName;
 
-  const DetailScreen({super.key, required this.name, required this.age});
+  const DetailScreen({
+    super.key, 
+    required this.name, 
+    required this.age,
+    required this.updateName
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +25,8 @@ class DetailScreen extends StatelessWidget {
           Text('Name: $name - Age: $age'),
           ElevatedButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pop(context, updateName("Hello World Back Again!"));
+              // Navigator.pop(context, 'Hello');
               //Navigator.of(context).pop();
 
             }, 

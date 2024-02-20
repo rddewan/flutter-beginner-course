@@ -1,9 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_basic_nav/screens/detail_screen.dart';
+import 'package:flutter_basic_nav/screens/log_in_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+  String name = '';
+
+  void updateName(String value) {
+    setState(() {
+      name = value;
+    });
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,30 +29,31 @@ class HomeScreen extends StatelessWidget {
         children: [
           const Text('Home Screen'),
           ElevatedButton(
-            onPressed: () {         
-            
+            onPressed: () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const DetailScreen(
-                  name: 'John',
-                  age: 30
-                )),
+                MaterialPageRoute(
+                    builder: (context) =>
+                         DetailScreen(name: 'John', age: 30, updateName: updateName)),
               );
-            }, 
+            },
+            child: const Text('Go To Detail'),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              final result = Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        DetailScreen(name: 'John', age: 30, updateName: updateName)),
+              );
+              // final value = await result as String;
+              // updateName(value);
+            },
             child: const Text('Go To Detail'),
           ),
 
-            ElevatedButton(
-            onPressed: () {
-             Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const DetailScreen(
-                name: 'John',
-                age: 30
-              )),
-            );
-            }, 
-            child: const Text('Go To Detail'),
-          )
+          Text(name),
+           
         ],
       ),
     );
