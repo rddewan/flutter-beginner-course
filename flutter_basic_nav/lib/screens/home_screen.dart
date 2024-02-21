@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_basic_nav/route/main_route.dart';
 import 'package:flutter_basic_nav/screens/detail_screen.dart';
+import 'package:flutter_basic_nav/screens/main_screen.dart';
+import 'package:flutter_basic_nav/screens/product_screen.dart';
+import 'package:flutter_basic_nav/screens/setting_screen.dart';
+import 'package:flutter_basic_nav/screens/shop_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,15 +14,28 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
+  int _selectedIndex = 0;
   String name = '';
+
+  List<Widget> _tabs = [
+    const MainScreen(),
+    const ProductScreen(),
+    const ShopScreen(),
+    const SettingScreen(),
+  ];
+
+  void _setSelectedItem(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   void updateName(String value) {
     setState(() {
       name = value;
     });
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,80 +87,34 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      body: Column(
-        children: [
-          const Text('Home Screen'),
-          ElevatedButton(
-            onPressed: () {
-              _goToDetail();
-              // final Map<String, dynamic> arguments = {
-              //   'name': 'John', 
-              //   'age': 30, 
-              //   'updateName': updateName,
-              // };
-              
-              // Navigator.pushNamed(
-              //   context, 
-              //   detailRoute, 
-              //   arguments: arguments,
-              // );
-              // Navigator.of(context).push(
-              //   MaterialPageRoute(
-              //       builder: (context) =>
-              //            DetailScreen(name: 'John', age: 30, updateName: updateName)),
-              // );
-            },
-            child: const Text('Go To Detail'),
+      body: _tabs[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _setSelectedItem,
+        backgroundColor: Colors.blueGrey,
+        selectedItemColor: Colors.green[200],
+        unselectedItemColor: Colors.black45,
+        showSelectedLabels: false,
+        showUnselectedLabels: true,
+        type: BottomNavigationBarType.shifting,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
-          ElevatedButton(
-            onPressed: () async {
-              final result = Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        DetailScreen(name: 'John', age: 30, updateName: updateName)),
-              );
-              // final value = await result as String;
-              // updateName(value);
-            },
-            child: const Text('Go To Detail'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'Product',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shop),
+            label: 'Shop',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Setting',
           ),
 
-          Text(name),
-
-          ElevatedButton(
-            onPressed: () async {
-              showDialog(
-                context: context, 
-                barrierDismissible: false,
-                builder: (context) {
-                  return PopScope(
-                    canPop: false,
-                    child: AlertDialog(
-                      title: const Text('Alert'),
-                      content: const Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(' I am a alert dialog')
-                        ],
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          }, 
-                          child: const Text('OK')
-                        )
-                      ],
-                    ),
-                  );
-                  
-                },
-              );
-            },
-            child: const Text('Open a Dilaog'),
-          ),
-           
         ],
       ),
     );
@@ -163,4 +134,6 @@ class _HomeScreenState extends State<HomeScreen> {
       arguments: arguments,
     );
   }
+
+  
 }
