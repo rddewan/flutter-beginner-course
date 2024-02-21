@@ -36,10 +36,11 @@ class DetailScreen extends StatelessWidget {
 
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(
-                context, 
-                trackingRoute, 
-              );
+              _goToTrackingScreen(context);
+              // Navigator.pushNamed(
+              //   context, 
+              //   trackingRoute, 
+              // );
               // Navigator.push(
               //   context, 
               //   MaterialPageRoute(
@@ -53,5 +54,19 @@ class DetailScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _goToTrackingScreen(BuildContext context) {
+    Navigator.pushNamed(
+      context, 
+      trackingRoute, 
+      arguments: 'Richard Dewan'
+    );
+    // Navigator.push(
+    //   context, 
+    //   MaterialPageRoute(
+    //     builder: (context) => const TrackingScreen(name: 'John'),
+    //   ),
+    //  ); //Navigator.pushReplacement(context, route)
   }
 }

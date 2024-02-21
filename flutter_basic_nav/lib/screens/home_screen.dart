@@ -25,22 +25,68 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Home'),
       ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+              ),
+              child: Text(
+                'Demo App',
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Home'),
+              onTap: () {
+                Navigator.pushNamed(context, homeRoute);
+                
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.details),
+              title: Text('Detail'),
+              onTap: () {
+                _goToDetail();
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.track_changes_outlined),
+              title: Text('Tracking'),
+              onTap: () {
+                 Navigator.pushNamed(
+                  context, 
+                  trackingRoute, 
+                  arguments: 'Richard Dewan'
+                );
+              },
+            ),
+
+          ],
+        ),
+      ),
       body: Column(
         children: [
           const Text('Home Screen'),
           ElevatedButton(
             onPressed: () {
-              final Map<String, dynamic> arguments = {
-                'name': 'John', 
-                'age': 30, 
-                'updateName': updateName,
-              };
+              _goToDetail();
+              // final Map<String, dynamic> arguments = {
+              //   'name': 'John', 
+              //   'age': 30, 
+              //   'updateName': updateName,
+              // };
               
-              Navigator.pushNamed(
-                context, 
-                detailRoute, 
-                arguments: arguments,
-              );
+              // Navigator.pushNamed(
+              //   context, 
+              //   detailRoute, 
+              //   arguments: arguments,
+              // );
               // Navigator.of(context).push(
               //   MaterialPageRoute(
               //       builder: (context) =>
@@ -100,6 +146,21 @@ class _HomeScreenState extends State<HomeScreen> {
            
         ],
       ),
+    );
+  }
+
+  void _goToDetail() {
+
+    final Map<String, dynamic> arguments = {
+      'name': 'John', 
+      'age': 30, 
+      'updateName': updateName,
+    };
+    
+    Navigator.pushNamed(
+      context, 
+      detailRoute, 
+      arguments: arguments,
     );
   }
 }

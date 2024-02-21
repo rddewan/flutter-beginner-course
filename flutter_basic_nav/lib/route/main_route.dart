@@ -20,7 +20,13 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
     case homeRoute:
       return MaterialPageRoute(builder: (_) => const HomeScreen()); 
     case detailRoute:
-      final argument = settings.arguments as Map<String, dynamic>;
+      final argument = settings.arguments;
+      if (argument == null) {
+        return _defaultRoute();
+      }
+
+      argument as Map<String, dynamic>;
+      
       if (argument.containsKey('name')) {
         return MaterialPageRoute(builder: (_) => DetailScreen(
           name: argument['name'], 
