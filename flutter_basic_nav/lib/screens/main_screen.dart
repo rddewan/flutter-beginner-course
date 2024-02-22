@@ -1,108 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_basic_nav/screens/detail_screen.dart';
+import 'package:flutter_basic_nav/screens/top_tab/chat_tab.dart';
+import 'package:flutter_basic_nav/screens/top_tab/group_tab.dart';
 
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   
   const MainScreen({
     super.key,    
   });
 
   @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateMixin {
+
+  late TabController _tabController;
+
+  List<Widget> _tabs = [
+    ChatTab(),
+    GroupTab(),
+  ];
+
+  @override
+  void initState() {    
+    super.initState();
+    _tabController = TabController(length: _tabs.length, vsync: this);
+  }
+
+  @override
+  void dispose() {   
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(      
-      body: Column(
-        children: [
-          const Text('Home Screen'),
-          ElevatedButton(
-            onPressed: () {
-              //_goToDetail();
-              // final Map<String, dynamic> arguments = {
-              //   'name': 'John', 
-              //   'age': 30, 
-              //   'updateName': updateName,
-              // };
-              
-              // Navigator.pushNamed(
-              //   context, 
-              //   detailRoute, 
-              //   arguments: arguments,
-              // );
-              // Navigator.of(context).push(
-              //   MaterialPageRoute(
-              //       builder: (context) =>
-              //            DetailScreen(name: 'John', age: 30, updateName: updateName)),
-              // );
-            },
-            child: const Text('Go To Detail'),
-          ),
-          // ElevatedButton(
-          //   onPressed: () async {
-          //     final result = Navigator.push(
-          //       context,
-          //       MaterialPageRoute(
-          //           builder: (context) =>
-          //               DetailScreen(name: 'John', age: 30, updateName: updateName)),
-          //     );
-          //     // final value = await result as String;
-          //     // updateName(value);
-          //   },
-          //   child: const Text('Go To Detail'),
-          // ),
-
-
-          ElevatedButton(
-            onPressed: () async {
-              showDialog(
-                context: context, 
-                barrierDismissible: false,
-                builder: (context) {
-                  return PopScope(
-                    canPop: false,
-                    child: AlertDialog(
-                      title: const Text('Alert'),
-                      content: const Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(' I am a alert dialog')
-                        ],
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          }, 
-                          child: const Text('OK')
-                        )
-                      ],
-                    ),
-                  );
-                  
-                },
-              );
-            },
-            child: const Text('Open a Dilaog'),
-          ),           
-        ],
-      ),
+    return Scaffold(
+      appBar: AppBar(
+        title: TabBar(
+          controller: _tabController,
+          tabs: [
+            Tab(
+              text: 'Chat',
+              icon: Icon(Icons.chat),
+            ),
+            Tab(
+              text: 'Group',
+              icon: Icon(Icons.group),
+            ),
+          ],
+        ),
+      ),      
+      body: TabBarView(
+        controller: _tabController,
+        children: _tabs,
+      )
     );
           
   }
-
-  // void _goToDetail() {
-
-  //   final Map<String, dynamic> arguments = {
-  //     'name': 'John', 
-  //     'age': 30, 
-  //     'updateName': updateName,
-  //   };
-    
-  //   Navigator.pushNamed(
-  //     context, 
-  //     detailRoute, 
-  //     arguments: arguments,
-  //   );
-  // }
-
-  
 }
